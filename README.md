@@ -120,7 +120,7 @@ Going back to the second PCA analysis that we performed, where we only looked at
 - !
 - ?  
 
-Lets see the accuracy of our machine learning algorithms when only performed on these specific attributes. Instead of using Multinomial Naive Bayes, we will be using Bernoulli Naive Bayes, as that is better suited for binary features.
+Let's see the accuracy of our machine learning algorithms when only performed on these specific attributes. Instead of using Multinomial Naive Bayes, we will be using Bernoulli Naive Bayes, as that is better suited for binary features.
 Our results are:
 1. Bernoulli Naive Bayes --> **90.13**
 2. Logistic Regression -- > **89.71**
