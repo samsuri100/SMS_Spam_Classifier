@@ -1,11 +1,11 @@
 # SMS Spam Classifier: Binary Classification of SMS Spam Messages
-SMS messages are ubiquitous and a major form of communication for billions of people. The spam messages that affect other communication channels, like email, similarly affect SMS. Filtering SMS messages and marking them as spam and possibly removing them can not only give the end user a better experience, but it can also free up network bandwidth, as hudreds of millions, if not billions, of messages could prevented from being sent ever year.
+SMS messages are ubiquitous and a major form of communication for billions of people. The spam messages that affect other communication channels, like email, similarly affect SMS. Filtering SMS messages and marking them as spam and possibly removing them can not only give the end user a better experience, but it can also free up network bandwidth, as hundreds of millions, if not billions, of messages could prevented from being sent ever year.
 
-This issue will not go away soon, with the upcoming adoption of the rich communication services protocol, end user devices will only become more advanced and have increasing ability to recieve and respond to highly interactive and content full messages. This will be exploited both by corporate actors seeking profit and malicious actors.
+This issue will not go away soon, with the upcoming adoption of the rich communication services protocol, end user devices will only become more advanced and have increasing ability to receive and respond to highly interactive and content full messages. This will be exploited both by corporate actors seeking profit and malicious actors.
 
 This analysis aims to classify SMS spam messages using a variety of techniques, so that spam messages can be filtered. 
 
-## Techniques Empoyed
+## Techniques Employed
 A variety of techniques were employed in an attempt to find the data set's most important attributes, and in turn, attempt to use these specifying features to classify the messages. The following techniques were used: 
 
 1. Word Cloud Analysis
@@ -36,7 +36,7 @@ The data set has 5,572 unique records, and each record contains two different fi
 
 ## Findings and Results
 #### Word Cloud
-The first step we did was to generate a word cloud, this allowed us to simply and trivialy see the most common words, as they will be the largest in the graphic. 
+The first step we did was to generate a word cloud, this allowed us to simply and trivially see the most common words, as they will be the largest in the graphic. 
 ![Word Cloud](https://github.com/samsuri100/SMS_Spam_Classifier/blob/master/pictures/wordCloud.png)
 
 From the word cloud above, the most common words included:
@@ -49,10 +49,10 @@ From the word cloud above, the most common words included:
 - ok  
 
 #### Principal Component Analysis
-Without filtering any of the words and using all the words present in the initial data set, we did a Principal Component Analysis on the two most common attributes, which were essentially the two most common words, and got PC1 and PC2, though the varience of both only account for **0.304% and 0.293%**, respectively. For the two most common features, they have little influence over whether the message is spam or not.  
+Without filtering any of the words and using all the words present in the initial data set, we did a Principal Component Analysis on the two most common attributes, which were essentially the two most common words, and got PC1 and PC2, though the variance of both only account for **0.304% and 0.293%**, respectively. For the two most common features, they have little influence over whether the message is spam or not.  
 ![All Words PCA](https://github.com/samsuri100/SMS_Spam_Classifier/blob/master/pictures/allWordsPCA.png)
 
-Filtering the data set for certain, specific words and symbols, we added additional fields for each record in the data set depending on whether each word was present in that record's text, and ignored the original fields that corresponded to the orignal set of words, unless they were one of the specific words that we added an additional field for. The specific words and symbols we looked for were:
+Filtering the data set for certain, specific words and symbols, we added additional fields for each record in the data set depending on whether each word was present in that record's text, and ignored the original fields that corresponded to the original set of words, unless they were one of the specific words that we added an additional field for. The specific words and symbols we looked for were:
 - free
 - win
 - interested
@@ -71,7 +71,7 @@ Our new data frame looked like:
 | 3 | 0    | 0   | 0          | 0   | 0          | 0     | 0           | 0        |
 | 4 | 0    | 0   | 0          | 0   | 0          | 0     | 0           | 0        |
 
-With these additional fields in place, and the original fields being ignored, we again did a Principal Component Analysis on the two most common attributes, and got PC1 and PC2, though the varience of both now accounted for **15.412% and 14.176%**, respectively. This is an improvement, and means that the fields we added were more significant than the words alone at determining whether a given SMS message was span or not. This is not surprising because the most common words, like 'the' and 'hi' may be present in both spam and legitimate messages.  
+With these additional fields in place, and the original fields being ignored, we again did a Principal Component Analysis on the two most common attributes, and got PC1 and PC2, though the variance of both now accounted for **15.412% and 14.176%**, respectively. This is an improvement, and means that the fields we added were more significant than the words alone at determining whether a given SMS message was span or not. This is not surprising because the most common words, like 'the' and 'hi' may be present in both spam and legitimate messages.  
 ![Filtered Words PCA](https://github.com/samsuri100/SMS_Spam_Classifier/blob/master/pictures/keyWordsPCA.png)
 
 #### Machine Learning Algorithms
@@ -87,7 +87,7 @@ We saw how well each of the algorithms fit and predicted the data. The results a
 2. Logistic Regression -- > **98.27**
 3. Support Vector Machine --> **87.14**
 
-Clearly, MultinomialNB and Logistic Regression did the best, whereas SVC did the worst. This is most likely because though the data is in a very high dimension, given that the number of columns is established over the entire vocabulary of the 'text' column, it not not easily seperatable, regardless of the kernal used. Also, because an optimum soft margin had to be found, SVC was the slowest of the methods. MultinomialNB did very well considering its speed and simplicity. It was particularly well suited for the bag-of-words technique on the text data.
+Clearly, MultinomialNB and Logistic Regression did the best, whereas SVM did the worst. This is most likely because though the data is in a very high dimension, given that the number of columns is established over the entire vocabulary of the 'text' column, it not not easily separable, regardless of the kernel used. Also, because an optimum soft margin had to be found, SVM was the slowest of the methods. MultinomialNB did very well considering its speed and simplicity. It was particularly well suited for the bag-of-words technique on the text data.
 
 Results of over 98% are quite good, however, since many words sent over SMS text messages are slang, not spelled correctly, or abbreviated, these altered words can dilute the amount of valid English words that we can attempt to derive meaning from. To investigate this, we filtered out all non-valid English words, but kept two attribute fields, looking at whether exclamation and questions marks are present. It is worth noting that some of the words present still are not valid English, such as 'dun', but they are present in the dictionary that we checked against. Our data frame, for our X values, before the text has been turned into a frequency vector, now look like this:
 
@@ -108,7 +108,7 @@ Re-running out tests, though excluding SVM, we now get:
 1. Multinomial Naive Bayes --> **97.67**
 2. Logistic Regression -- > **98.03**
 
-Our accuracy actually went down, for MultinomialNB, by .478%, and for Logistic Regression, by .24%. That means we eliminated some key columns when filtering out non-valid English words. If fact this makes sense, certain expessions and abbreviations, such as <3 or (:, might be very indicative of personal messages over more formal messages, whose purpose can be more ambigous. 
+Our accuracy actually went down, for MultinomialNB, by .478%, and for Logistic Regression, by .24%. That means we eliminated some key columns when filtering out non-valid English words. If fact this makes sense, certain expressions and abbreviations, such as <3 or (:, might be very indicative of personal messages over more formal messages, whose purpose can be more ambiguous. 
 
 Going back to the second PCA analysis that we performed, where we only looked at certain key words and symbols:
 - free
