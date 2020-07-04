@@ -125,4 +125,4 @@ Our results are:
 1. Bernoulli Naive Bayes --> **90.13**
 2. Logistic Regression -- > **89.71**
 
-It seems that though the key words and punctuation we included do account for more variability than many other words, they still do not account for enough variability to make provide higher accuracy than when training on the full data set, and this makes sense given the limited scope of the attributes.
+It seems that though the key words and punctuation we included do account for more variability than many other words, they still do not account for enough variability to provide higher accuracy than when training on the full data set, and this makes sense given the limited scope of the attributes.
